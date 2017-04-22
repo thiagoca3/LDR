@@ -8,6 +8,8 @@ GPIO.setmode(GPIO.BCM)
 luz = 0
 tempo = 0
 
+start_time = time.time()
+
 def RCtime (RCpin):
         reading = 0
         GPIO.setup(RCpin, GPIO.OUT)
@@ -20,7 +22,8 @@ def RCtime (RCpin):
 while True:
         f = open('Results.txt', 'a')
         luz = RCtime(18)
-        tempo = time.time()
+        tempo = time.time() - start_time
+        print ('\t' + str(luz) + '\t' + str(tempo) + '\n')
         f.write('\t' + str(luz) + '\t' + str(tempo) + '\n')
         f.close()
 
